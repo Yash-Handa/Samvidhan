@@ -1,0 +1,40 @@
+{
+  "name": "samvidhan",
+  "version": "1.0.0",
+  "description": "GraphQL API of Constitution of India",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "esw --color",
+    "lint-w": "esw --color -w",
+    "start": "node src",
+    "start-w": "nodemon --exec npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yash-Handa/Samvidhan.git"
+  },
+  "author": "Yash Handa",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Yash-Handa/Samvidhan/issues"
+  },
+  "homepage": "https://github.com/Yash-Handa/Samvidhan#readme",
+  "devDependencies": {
+    "eslint": "^6.3.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-security": "^1.4.0",
+    "eslint-watch": "^6.0.0",
+    "nodemon": "^1.19.2"
+  },
+  "dependencies": {
+    "apollo-server": "^2.9.3",
+    "debug": "^4.1.1",
+    "dotenv": "^8.1.0",
+    "graphql": "^14.5.4"
+  },
+  "engines": {
+    "node": "10.16.0",
+    "npm": "6.9.0"
+  }
+}

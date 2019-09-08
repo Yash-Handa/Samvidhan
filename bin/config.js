@@ -1,0 +1,42 @@
+const envVar = require('dotenv').config({
+  path: `${__dirname}/.env`,
+});
+
+if (envVar.error) {
+  throw envVar.error;
+}
+
+const config = {
+  dev: 'development',
+  prod: 'production',
+  test: 'testing',
+  // add general configs here
+  dbHost: process.env.DB_HOST,
+  dbUser: process.env.DB_USER,
+  dbPass: process.env.DB_PASS,
+};
+
+// by default 'development' env
+process.env.NODE_ENV = process.env.NODE_ENV || config.dev;
+
+config.env = process.env.NODE_ENV;
+
+if (config.dev === 'development') {
+  // add development related environment variables here
+  process.env.DEBUG = 'Samvidhan:*';
+}
+
+const envBasedSetting = {
+  development: {
+    // add development related configs here
+  },
+  production: {
+    // add production related configs here
+  },
+  testing: {
+    // add testing related configs here
+  },
+};
+
+// this is a shallow merge
+module.exports = { ...config, ...envBasedSetting[config.env] };
