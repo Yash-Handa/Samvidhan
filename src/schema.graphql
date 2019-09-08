@@ -1,0 +1,7 @@
+type Query {
+  # this is a comment
+  """This is doctype/ detail for hello"""
+  hello: String
+  bye: String
+  author: String
+}

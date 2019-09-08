@@ -1,17 +1,8 @@
 // eslint-disable-next-line import/order
 const config = require('../bin/config');
 const debug = require('debug')('Samvidhan:Server');
-const { ApolloServer, gql } = require('apollo-server');
-
-const typeDefs = gql`
-  type Query {
-    # this is a comment
-    """This is doctype/ detail for hello"""
-    hello: String
-    bye: String
-    author: String
-  }
-`;
+const { ApolloServer } = require('apollo-server');
+const { importSchema } = require('graphql-import');
 
 const resolvers = {
   Query: {
@@ -22,9 +13,13 @@ const resolvers = {
 };
 
 const server = new ApolloServer({
-  typeDefs,
+  typeDefs: importSchema('./src/schema.graphql'),
   resolvers,
   tracing: true,
+  persistedQueries: {
+    // better implementation of cache (redis)
+    cache: true,
+  },
   engine: {
     apiKey: config.apollo.engineAPIKey,
     // uncomment the below line to log status report from each request send to apollo graph engine
