@@ -11,9 +11,9 @@ const config = {
   prod: 'production',
   test: 'testing',
   // add general configs here
-  dbHost: process.env.DB_HOST,
-  dbUser: process.env.DB_USER,
-  dbPass: process.env.DB_PASS,
+  apollo: {
+    engineAPIKey: process.env.ENGINE_API_KEY,
+  },
 };
 
 // by default 'development' env

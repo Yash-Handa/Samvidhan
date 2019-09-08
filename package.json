@@ -7,7 +7,9 @@
     "lint": "esw --color",
     "lint-w": "esw --color -w",
     "start": "node src",
-    "start-w": "nodemon --exec npm start"
+    "start-w": "nodemon --exec npm start",
+    "apolloGraph-dev": "npx apollo service:push --endpoint=http://localhost:1998 --tag=development",
+    "apolloGraph-prod": "npx apollo service:push --endpoint=http://localhost:1998 --tag=production"
   },
   "repository": {
     "type": "git",
