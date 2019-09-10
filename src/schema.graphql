@@ -1,7 +1,130 @@
+type SubClause {
+  SubClauseNo: String!
+  SubClauseDesc: String!
+  Status: String
+}
+
+type Clauses {
+  clauseNo: String!
+  clauseDesc: String!
+  subClauses (first: Int) : [SubClause!]
+  status: String
+  followUp: String
+}
+
+type Clause {
+  clauseNo: String!
+  clauseDesc: String!
+  subClauses (select: SubClausesInput) : SubClauseFeed!
+  status: String
+  followUp: String
+}
+
+type Explanation {
+  ExplanationNo: String!
+  Explanation: String!
+}
+
+type Articles {
+  artNo: String!
+  name: String!
+  subHeading: String
+  status: String
+  explanations: [Explanation!]
+}
+
+type ArticlesWithArtDesc implements Articles {
+  artNo: String!
+  name: String!
+  subHeading: String
+  artDesc: String!
+  status: String
+  explanations: [Explanation!]
+}
+
+type ArticlesWithClauses implements Articles {
+  artNo: String!
+  name: String!
+  subHeading: String
+  clauses (first: Int) : [Clause]!
+  status: String
+  explanations: [Explanation!]
+}
+
+type Article {
+  artNo: String!
+  name: String!
+  subHeading: String
+  status: String
+  explanations: [Explanation!]
+}
+
+type ArticleWithArtDesc implements Article {
+  artNo: String!
+  name: String!
+  subHeading: String
+  artDesc: String!
+  status: String
+  explanations: [Explanation!]
+}
+
+type ArticleWithClauses implements Article {
+  artNo: String!
+  name: String!
+  subHeading: String
+  clauses (select: ClausesInput) : ClauseFeed!
+  status: String
+  explanations: [Explanation!]
+}
+
+type ArticleFeed {
+  cursor: String!
+  hasNext: Boolean!
+  articleList: [Articles]!
+}
+
+type ClauseFeed {
+  cursor: String!
+  hasNext: Boolean!
+  clauseList: [Clauses]!
+}
+
+type SubClauseFeed {
+  cursor: String!
+  hasNext: Boolean!
+  subClauseList: [SubClause]!
+}
+
 type Query {
-  # this is a comment
-  """This is doctype/ detail for hello"""
-  hello: String
-  bye: String
-  author: String
+  article (artNo: String!) : Article!
+  articles (select: ArticlesInput!) : ArticleFeed!
+  clause (artNo: String!, clauseNo: String!) : Clause!
+  clauses (artNo: String!, select: ClausesInput) : ClauseFeed!
+  subClause (artNo: String!, clauseNo: String!, SubClauseNo: String!) : SubClause!
+  subclauses (artNo: String!, clauseNo: String!, select: SubClausesInput) : SubClauseFeed!
+}
+
+input ArticlesInput {
+  from: String
+  to: String
+  inputList: [String!]
+  subHeading: String
+  limit: Int = 10
+  cursor: String
+}
+
+input ClausesInput {
+  from: String
+  to: String
+  inputList: [String!]
+  limit: Int
+  cursor: String
+}
+
+input SubClausesInput {
+  from: String
+  to: String
+  inputList: [String!]
+  limit: Int
+  cursor: String
 }
