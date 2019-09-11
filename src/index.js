@@ -30,10 +30,6 @@ const server = new ApolloServer({
   },
 });
 
-server.listen({
-  port: 1998,
-  // Uncomment the below line to make the project available to local network
-  // host: '192.168.43.171', // ip for SKH
-}).then(({ url }) => {
+server.listen().then(({ url }) => {
   debug(`The server is running at: ${url}`);
 });
