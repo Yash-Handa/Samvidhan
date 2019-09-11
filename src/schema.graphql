@@ -1,7 +1,7 @@
 type SubClause {
-  subClauseNo: String!
-  subClauseDesc: String!
-  status: String
+  SubClauseNo: String!
+  SubClauseDesc: String!
+  Status: String
 }
 
 type Clauses {
@@ -25,7 +25,7 @@ type Explanation {
   Explanation: String!
 }
 
-interface Articles {
+type Articles {
   artNo: String!
   name: String!
   subHeading: String
@@ -51,7 +51,7 @@ type ArticlesWithClauses implements Articles {
   explanations: [Explanation!]
 }
 
-interface Article {
+type Article {
   artNo: String!
   name: String!
   subHeading: String

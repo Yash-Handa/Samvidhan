@@ -4,20 +4,18 @@ const debug = require('debug')('Samvidhan:Server');
 const { ApolloServer } = require('apollo-server');
 const { importSchema } = require('graphql-import');
 
-const COI = require('./COI.json');
-const Query = require('./query');
+const resolvers = {
+  Query: {
+    hello: () => 'Hello from the Author',
+    bye: () => 'Bye Bye from the Author',
+    author: () => 'Yash Handa',
+  },
+};
 
 const server = new ApolloServer({
   typeDefs: importSchema('./src/schema.graphql'),
-  resolvers: {
-    Query,
-  },
-  context: {
-    COI,
-  },
+  resolvers,
   tracing: true,
-  introspection: true,
-  playground: true,
   persistedQueries: {
     // better implementation of cache (redis)
     cache: true,
@@ -30,6 +28,10 @@ const server = new ApolloServer({
   },
 });
 
-server.listen().then(({ url }) => {
+server.listen({
+  port: 1998,
+  // Uncomment the below line to make the project available to local network
+  // host: '192.168.43.171', // ip for SKH
+}).then(({ url }) => {
   debug(`The server is running at: ${url}`);
 });
