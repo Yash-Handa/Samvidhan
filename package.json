@@ -8,7 +8,7 @@
     "lint-w": "esw --color -w",
     "start": "node src",
     "COI": "node COISetup.js",
-    "build": "npm start",
+    "build": "",
     "start-w": "nodemon --exec npm start",
     "apolloGraph-dev": "npx apollo service:push --endpoint=http://localhost:1998 --tag=development",
     "apolloGraph-prod": "npx apollo service:push --endpoint=http://localhost:1998 --tag=production"
