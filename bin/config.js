@@ -1,11 +1,3 @@
-const envVar = require('dotenv').config({
-  path: `${__dirname}/.env`,
-});
-
-if (envVar.error) {
-  throw envVar.error;
-}
-
 const config = {
   dev: 'development',
   prod: 'production',
