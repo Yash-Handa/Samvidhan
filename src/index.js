@@ -6,11 +6,17 @@ const { importSchema } = require('graphql-import');
 
 const COI = require('./COI.json');
 const Query = require('./query');
+const { SubClause, SubClauseFeed } = require('./SubClauses/resolver');
+const { Articles, Article } = require('./Articles/resolver');
 
 const server = new ApolloServer({
   typeDefs: importSchema('./src/schema.graphql'),
   resolvers: {
     Query,
+    SubClause,
+    SubClauseFeed,
+    Articles,
+    Article,
   },
   context: {
     COI,

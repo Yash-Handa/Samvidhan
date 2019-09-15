@@ -46,7 +46,7 @@ type ArticlesWithClauses implements Articles {
   artNo: String!
   name: String!
   subHeading: String
-  clauses (first: Int) : [Clause]!
+  clauses (first: Int) : [Clauses]!
   status: String
   explanations: [Explanation!]
 }
@@ -92,7 +92,7 @@ type ClauseFeed {
 type SubClauseFeed {
   cursor: String!
   hasNext: Boolean!
-  subClauseList: [SubClause]!
+  subClauseList: [SubClause]
 }
 
 type Query {
